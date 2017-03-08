@@ -1,6 +1,5 @@
 function isNotEmptyObject(o){
-    debugger;
-    return Object.keys(o).length !== 0;
+    return o && Object.keys(o).length !== 0;
 }
 
 function checkLogin(username) {

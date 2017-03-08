@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import "./Content.scss"
+
 export class Content extends React.Component{
 
     constructor() {
@@ -8,7 +10,7 @@ export class Content extends React.Component{
 
     render(){
         return (
-            <div>
+            <div className="content">
                 {this.props.children}
             </div>
         )

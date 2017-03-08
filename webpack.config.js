@@ -1,4 +1,5 @@
 var webpack = require('webpack');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 var env = process.env.WEBPACK_ENV || 'dev';
 var WebpackDevServer = require('webpack-dev-server');
@@ -33,16 +34,24 @@ var config = {
                 loader: 'babel-loader',
                 exclude: /(node_modules|bower_components)/,
                 query: {
-                    presets: ["es2015", "react", "stage-2"],
+                    presets: ["es2015", "react", "stage-1", "stage-2"],
                     plugins: ["transform-react-jsx", "transform-decorators-legacy"]
                 }
+            },
+            {
+                test: /\.scss$/,
+                loaders: ['style-loader', 'css-loader', 'sass-loader']
             }
         ]
     },
     resolve: {
         extensions: ['.js', '.jsx']
     },
-    plugins: plugins
+    plugins: plugins,
+    node: {
+        child_process: 'empty',
+        fs: "empty"
+    }
 };
 
 if (env === 'dev') {

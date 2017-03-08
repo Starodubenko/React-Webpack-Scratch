@@ -1,2 +1,2 @@
 
-export {logInAction, logInIsSuccessAction, logOutAction} from "./LoginActions/LoginActions"
+export {startLogInAction, logInIsSuccessAction, logOutAction} from "./AuthActions/AuthActions"

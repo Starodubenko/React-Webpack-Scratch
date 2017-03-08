@@ -2,7 +2,9 @@ import * as React from "react";
 import LoginForm from "./LoginForm/LoginForm";
 import {connect} from "react-redux";
 
-import {logInAction, logInIsSuccessAction, logOutAction} from "../../redux/actions"
+import "./Login.scss";
+
+import {startLogInAction, logInIsSuccessAction, logOutAction} from "../../redux/actions"
 
 @connect((store) => {
     return {
@@ -12,20 +14,16 @@ import {logInAction, logInIsSuccessAction, logOutAction} from "../../redux/actio
 export class Login extends React.Component{
 
     handleSubmit(values){
-        this.props.dispatch(logInAction(values));
-        this.props.dispatch(logInIsSuccessAction(values));
-    };
-
-    logOut(values){
-        this.props.dispatch(logOutAction());
+        this.props.dispatch(startLogInAction());
+        setTimeout(() => {
+            this.props.dispatch(logInIsSuccessAction(values));
+        }, 1000);
     };
 
     render() {
         return (
-            <div>
-                <h1>{!!this.props.user}</h1>
-                <h1>{this.props.user ? this.props.user.fullName: "User name place"}</h1>
-                <LoginForm onSubmit={this.handleSubmit.bind(this)} onLogOut={this.logOut.bind(this)}/>
+            <div className="loginPage">
+                <LoginForm onSubmit={this.handleSubmit.bind(this)}/>
             </div>
         );
     }

@@ -23,7 +23,7 @@ const AuthReducer = (state = {
                 ...state,
                 logining: false,
                 loggedIn: true,
-                user: {id: 1, fullName: "John Doe"}
+                user: action.payload.user
             }
         }
         case LOG_IN_REJECTED: {
@@ -37,11 +37,14 @@ const AuthReducer = (state = {
             return {
                 ...state,
                 user: null,
+                logining: false,
+                loggedIn: false,
                 error: null
             }
         }
+        default:
+            return state;
     }
-    return state;
 };
 
 export default AuthReducer;
