@@ -41,18 +41,28 @@ import IconButton from 'material-ui/IconButton';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import FlatButton from 'material-ui/FlatButton';
-import Toggle from 'material-ui/Toggle';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
-import NavigationClose from 'material-ui/svg-icons/navigation/close';
 
 import {logOutAction} from "../../redux/actions";
+import {routerActions} from "react-router-redux";
 
+
+@connect((store) => {
+    return {
+
+    }
+})
 class Login extends React.Component {
     static muiName = 'FlatButton';
 
+    goToLoginPage(e){
+        e.preventDefault();
+        this.props.dispatch(routerActions.push('/login'));
+    }
+
     render() {
         return (
-            <FlatButton {...this.props} label="Login"/>
+            <FlatButton style={this.props.style} label="Login" onClick={this.goToLoginPage.bind(this)}/>
         );
     }
 }
@@ -67,7 +77,9 @@ class Logged extends React.Component {
     handleChange = (event, value) => {
         switch (value) {
             case "profile":
-                console.log("Profile was triggered!");
+                this.props.dispatch(routerActions.push({
+                    pathname: '/profile'
+                }));
                 break;
             case "signOut":
                 this.props.dispatch(logOutAction());

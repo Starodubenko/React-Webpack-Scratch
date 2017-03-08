@@ -1,6 +1,7 @@
 import React, {Component}from "react";
 import {Router, Route, hashHistory, browserHistory} from "react-router";
-import {Login, App, Home, Account, NotFound} from "./containers";
+import {Login, App, Home, Profile, NotFound} from "./containers";
+import { syncHistoryWithStore } from 'react-router-redux';
 
 export default class Routes extends Component{
 
@@ -23,12 +24,14 @@ export default class Routes extends Component{
     // };
 
     render(){
+        const {store} = this.props;
+        const history = syncHistoryWithStore(hashHistory, store);
         return (
-            <Router history={hashHistory}>
+            <Router history={history}>
                 <Route path="/" component={App}>
                     <Route path="login" component={Login}/>
                     <Route path="home" component={Home}/>
-                    <Route path="account" component={Account}/>
+                    <Route path="profile" component={Profile}/>
                 </Route>
                 <Route path="*" component={NotFound}/>
             </Router>

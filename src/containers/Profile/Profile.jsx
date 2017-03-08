@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export class Account extends React.Component{
+export class Profile extends React.Component{
 
     constructor() {
         super();
@@ -9,7 +9,7 @@ export class Account extends React.Component{
     render(){
         return (
             <div>
-                Account Component!!!
+                <h1>My profile page</h1>
             </div>
         )
     }

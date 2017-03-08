@@ -43,7 +43,7 @@ export class App extends React.Component {
     render() {
         return (
             <div className="app">
-                <Header stoconfig={this.state.headerConfig} />
+                <Header stoconfig={this.state.headerConfig}/>
                 <Content>
                     {this.props.children}
                 </Content>

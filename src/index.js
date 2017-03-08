@@ -7,7 +7,7 @@ import {Provider} from "react-redux";
 window.onload = () => {
     ReactDOM.render((
         <Provider store={store} key="provider">
-            <Routes/>
+            <Routes store={store} />
         </Provider>
         ), document.querySelector('#container')
     );
